@@ -1,0 +1,404 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head lang="en"><style type="text/css">@charset "UTF-8";
+/* CSS Document */
+
+/** Structure */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  font-size: 14px;
+}
+
+#system-error {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+#json, #xml {
+  display: none;
+}
+
+#header {
+  position: fixed;
+  width: 100%;
+}
+
+#specs {
+  padding-top: 50px;
+}
+
+#header .angular {
+  font-family: Courier New, monospace;
+  font-weight: bold;
+}
+
+#header h1 {
+  font-weight: normal;
+  float: left;
+  font-size: 30px;
+  line-height: 30px;
+  margin: 0;
+  padding: 10px 10px;
+  height: 30px;
+}
+
+#application h2,
+#specs h2 {
+  margin: 0;
+  padding: 0.5em;
+  font-size: 1.1em;
+}
+
+#status-legend {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+#header,
+#application,
+.test-info,
+.test-actions li {
+  overflow: hidden;
+}
+
+#application {
+  margin: 10px;
+}
+
+#application iframe {
+  width: 100%;
+  height: 758px;
+}
+
+#application .popout {
+  float: right;
+}
+
+#application iframe {
+  border: none;
+}
+
+.tests li,
+.test-actions li,
+.test-it li,
+.test-it ol,
+.status-display {
+  list-style-type: none;
+}
+
+.tests,
+.test-it ol,
+.status-display {
+  margin: 0;
+  padding: 0;
+}
+
+.test-info {
+  margin-left: 1em;
+  margin-top: 0.5em;
+  border-radius: 8px 0 0 8px;
+  -webkit-border-radius: 8px 0 0 8px;
+  -moz-border-radius: 8px 0 0 8px;
+  cursor: pointer;
+}
+
+.test-info:hover .test-name {
+  text-decoration: underline;
+}
+
+.test-info .closed:before {
+  content: '\25b8\00A0';
+}
+
+.test-info .open:before {
+  content: '\25be\00A0';
+  font-weight: bold;
+}
+
+.test-it ol {
+  margin-left: 2.5em;
+}
+
+.status-display,
+.status-display li {
+  float: right;
+}
+
+.status-display li {
+  padding: 5px 10px;
+}
+
+.timer-result,
+.test-title {
+  display: inline-block;
+  margin: 0;
+  padding: 4px;
+}
+
+.test-actions .test-title,
+.test-actions .test-result {
+  display: table-cell;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.test-actions {
+  display: table;
+}
+
+.test-actions li {
+  display: table-row;
+}
+
+.timer-result {
+  width: 4em;
+  padding: 0 10px;
+  text-align: right;
+  font-family: monospace;
+}
+
+.test-it pre,
+.test-actions pre {
+  clear: left;
+  color: black;
+  margin-left: 6em;
+}
+
+.test-describe {
+  padding-bottom: 0.5em;
+}
+
+.test-describe .test-describe {
+  margin: 5px 5px 10px 2em;
+}
+
+.test-actions .status-pending .test-title:before {
+  content: '\00bb\00A0';
+}
+
+.scrollpane {
+   max-height: 20em;
+   overflow: auto;
+}
+
+/** Colors */
+
+#header {
+  background-color: #F2C200;
+}
+
+#specs h2 {
+  border-top: 2px solid #BABAD1;
+}
+
+#specs h2,
+#application h2 {
+  background-color: #efefef;
+}
+
+#application {
+  border: 1px solid #BABAD1;
+}
+
+.test-describe .test-describe {
+  border-left: 1px solid #BABAD1;
+  border-right: 1px solid #BABAD1;
+  border-bottom: 1px solid #BABAD1;
+}
+
+.status-display {
+  border: 1px solid #777;
+}
+
+.status-display .status-pending,
+.status-pending .test-info {
+  background-color: #F9EEBC;
+}
+
+.status-display .status-success,
+.status-success .test-info {
+  background-color: #B1D7A1;
+}
+
+.status-display .status-failure,
+.status-failure .test-info {
+  background-color: #FF8286;
+}
+
+.status-display .status-error,
+.status-error .test-info {
+  background-color: black;
+  color: white;
+}
+
+.test-actions .status-success .test-title {
+  color: #30B30A;
+}
+
+.test-actions .status-failure .test-title {
+  color: #DF0000;
+}
+
+.test-actions .status-error .test-title {
+  color: black;
+}
+
+.test-actions .timer-result {
+  color: #888;
+}
+</style><style type="text/css">@charset "UTF-8";
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+  display: none !important;
+}
+
+ng\:form {
+  display: block;
+}
+
+.ng-animate-shim {
+  visibility:hidden;
+}
+
+.ng-anchor {
+  position:absolute;
+}
+</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <meta charset="utf-8" />
+    <title>In-house</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="In-house Quotation System" />
+    <meta name="keywords" content="insurance,quote,policy" />
+    <meta name="author" content="Allegro Team" />
+    <meta name="version" content="1.0.3" />
+    <base href="/" />
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,700,300,600,400" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="css/vendor-899ff0a52c.css" />
+
+    <link rel="stylesheet" href="css/app-d7f92644fc.css" />
+  </head>
+  <body ng-controller="bodyCtrl" ng-class="bodyClass()" class="ng-scope main reports list" style="">
+
+    <!-- uiView:  --><div ui-view="" class="ng-scope"><div id="wrapper" class="ng-scope">
+  <!-- uiView: header --><div ui-view="header" class="ng-scope"><nav class="navbar navbar-default navbar-fixed-top ng-scope ng-isolate-scope headroom headroom--top" headroom="">
+  <div class="container-fluid">
+
+    <!-- brand and toggle -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ui-sref="main.dashboard" href="/">Logo</a>
+    </div>
+    <!-- /.brand and toggle -->
+
+    <div class="collapse navbar-collapse" id="main-navbar-collapse">
+
+      <!-- nav links -->
+      <ul class="nav navbar-nav navbar-left">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Policies <span class="caret"></span></a>
+          <ul class="dropdown-menu standard-menu">
+            <li><a ui-sref="main.policies.startQuote" href="/policies/start-quote">New Quote</a></li>
+            <li><a ui-sref="main.policies.list" href="/policies">Existing Policies/Quotes</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Claims <span class="caret"></span></a>
+          <ul class="dropdown-menu standard-menu">
+            <li><a href="#">New Claim</a></li>
+            <li><a href="#">Maintenance</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brokers <span class="caret"></span></a>
+          <ul class="dropdown-menu standard-menu">
+            <li><a ui-sref="wizard.agents.new" href="/agents/new">New Agent</a></li>
+            <li><a ui-sref="main.agents.list" href="/agents">Maintenance</a></li>
+          </ul>
+        </li>
+        <li><a ui-sref="main.reports.list" href="/reports">Reports</a></li>
+      </ul>
+      <!-- /.nav links -->
+
+      <!-- right side -->
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Hi, <strong class="ng-binding">Rocky Chen</strong> <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu standard-menu">
+            <li><a href="#">Account Settings</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="" ng-click="logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!-- /.right side -->
+
+    </div>
+  </div>
+</nav>
+</div>
+
+  <div class="page-body">
+    <section id="main">
+      <div class="main-content">
+        <!-- ngRepeat: alert in alerts -->
+
+        <!-- uiView:  --><div ui-view="" class="container-fluid p-t-20 p-b-20 ng-scope"><!-- uiView: undefined --><ui-view class="ng-scope"><div class="panel ng-scope">
+  <div class="panel-body">
+    <h2 class="primary-title size-h1">Reports</h2>
+
+    <div class="well">
+      <form class="form-inline ng-dirty ng-valid-parse ng-valid ng-valid-required ng-submitted" name="form" ng-submit="submitForm(form)" novalidate="" style="">
+        <div class="form-group" ng-class="{ 'has-error': hasError(form, 'underwriter') }">
+          <select class="form-control input-lg ng-not-empty ng-dirty ng-valid-parse ng-valid ng-valid-required ng-touched" name="underwriter" ng-model="underwriter" required="" style="">
+            <option value="" disabled="">Underwriter</option>
+            <!-- ngRepeat: option in underwriters --><option ng-repeat="option in underwriters" value="CTI" class="ng-binding ng-scope">CTI</option><!-- end ngRepeat: option in underwriters -->
+          </select>
+        </div>
+
+        <div class="form-group" ng-class="{ 'has-error': hasError(form, 'policyType') }">
+          <select class="form-control input-lg ng-not-empty ng-dirty ng-valid-parse ng-valid ng-valid-required ng-touched" name="policyType" ng-model="policyType" required="" style="">
+            <option value="" disabled="">Policy Type</option>
+            <!-- ngRepeat: option in policyTypes --><option ng-repeat="option in policyTypes" value="LANDLORD_HOUSEHOLD" class="ng-binding ng-scope">Landlord Household Insurance</option><!-- end ngRepeat: option in policyTypes --><option ng-repeat="option in policyTypes" value="OWNER_OCCUPIER" class="ng-binding ng-scope">Home Insurance</option><!-- end ngRepeat: option in policyTypes -->
+          </select>
+        </div>
+
+        <div class="form-group">
+          <select class="form-control input-lg ng-pristine ng-valid ng-not-empty ng-touched" name="month" ng-model="month" ng-options="index * 1 + 1 as m for (index, m) in months" ng-init="month = thisMonth" ng-change="getStartAndEndDate(month, year)" style=""><option value="" disabled="" class="">Month</option><option label="January" value="number:1">January</option><option label="February" value="number:2">February</option><option label="March" value="number:3" selected="selected">March</option><option label="April" value="number:4">April</option><option label="May" value="number:5">May</option><option label="June" value="number:6">June</option><option label="July" value="number:7">July</option><option label="August" value="number:8">August</option><option label="September" value="number:9">September</option><option label="October" value="number:10">October</option><option label="November" value="number:11">November</option><option label="December" value="number:12">December</option></select>
+        </div>
+
+        <div class="form-group">
+          <select class="form-control input-lg ng-pristine ng-valid ng-not-empty ng-touched" name="year" ng-model="year" ng-options="y for y in years" ng-init="year = thisYear" ng-change="getStartAndEndDate(month, year)" style=""><option value="" disabled="" class="">Year</option><option label="2016" value="number:2016" selected="selected">2016</option><option label="2015" value="number:2015">2015</option><option label="2014" value="number:2014">2014</option><option label="2013" value="number:2013">2013</option><option label="2012" value="number:2012">2012</option><option label="2011" value="number:2011">2011</option><option label="2010" value="number:2010">2010</option><option label="2009" value="number:2009">2009</option><option label="2008" value="number:2008">2008</option></select>
+        </div>
+
+        <button class="btn btn-primary btn-hollow" type="submit"><span class="glyphicon glyphicon-download-alt pre-icon"></span>Generate</button>
+      </form>
+    </div>
+
+  </div>
+</div>
+</ui-view></div>
+      </div>
+    </section>
+  </div>
+</div>
+</div>
+
+    <script src="js/vendor-a0136ec1d1.js"></script>
+
+    <script src="js/app-0cf446b8be.js"></script>
+
+  
+
+</body></html>

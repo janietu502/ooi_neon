@@ -1,0 +1,332 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head lang="en"><style type="text/css">@charset "UTF-8";
+/* CSS Document */
+
+/** Structure */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  font-size: 14px;
+}
+
+#system-error {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+#json, #xml {
+  display: none;
+}
+
+#header {
+  position: fixed;
+  width: 100%;
+}
+
+#specs {
+  padding-top: 50px;
+}
+
+#header .angular {
+  font-family: Courier New, monospace;
+  font-weight: bold;
+}
+
+#header h1 {
+  font-weight: normal;
+  float: left;
+  font-size: 30px;
+  line-height: 30px;
+  margin: 0;
+  padding: 10px 10px;
+  height: 30px;
+}
+
+#application h2,
+#specs h2 {
+  margin: 0;
+  padding: 0.5em;
+  font-size: 1.1em;
+}
+
+#status-legend {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+#header,
+#application,
+.test-info,
+.test-actions li {
+  overflow: hidden;
+}
+
+#application {
+  margin: 10px;
+}
+
+#application iframe {
+  width: 100%;
+  height: 758px;
+}
+
+#application .popout {
+  float: right;
+}
+
+#application iframe {
+  border: none;
+}
+
+.tests li,
+.test-actions li,
+.test-it li,
+.test-it ol,
+.status-display {
+  list-style-type: none;
+}
+
+.tests,
+.test-it ol,
+.status-display {
+  margin: 0;
+  padding: 0;
+}
+
+.test-info {
+  margin-left: 1em;
+  margin-top: 0.5em;
+  border-radius: 8px 0 0 8px;
+  -webkit-border-radius: 8px 0 0 8px;
+  -moz-border-radius: 8px 0 0 8px;
+  cursor: pointer;
+}
+
+.test-info:hover .test-name {
+  text-decoration: underline;
+}
+
+.test-info .closed:before {
+  content: '\25b8\00A0';
+}
+
+.test-info .open:before {
+  content: '\25be\00A0';
+  font-weight: bold;
+}
+
+.test-it ol {
+  margin-left: 2.5em;
+}
+
+.status-display,
+.status-display li {
+  float: right;
+}
+
+.status-display li {
+  padding: 5px 10px;
+}
+
+.timer-result,
+.test-title {
+  display: inline-block;
+  margin: 0;
+  padding: 4px;
+}
+
+.test-actions .test-title,
+.test-actions .test-result {
+  display: table-cell;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.test-actions {
+  display: table;
+}
+
+.test-actions li {
+  display: table-row;
+}
+
+.timer-result {
+  width: 4em;
+  padding: 0 10px;
+  text-align: right;
+  font-family: monospace;
+}
+
+.test-it pre,
+.test-actions pre {
+  clear: left;
+  color: black;
+  margin-left: 6em;
+}
+
+.test-describe {
+  padding-bottom: 0.5em;
+}
+
+.test-describe .test-describe {
+  margin: 5px 5px 10px 2em;
+}
+
+.test-actions .status-pending .test-title:before {
+  content: '\00bb\00A0';
+}
+
+.scrollpane {
+   max-height: 20em;
+   overflow: auto;
+}
+
+/** Colors */
+
+#header {
+  background-color: #F2C200;
+}
+
+#specs h2 {
+  border-top: 2px solid #BABAD1;
+}
+
+#specs h2,
+#application h2 {
+  background-color: #efefef;
+}
+
+#application {
+  border: 1px solid #BABAD1;
+}
+
+.test-describe .test-describe {
+  border-left: 1px solid #BABAD1;
+  border-right: 1px solid #BABAD1;
+  border-bottom: 1px solid #BABAD1;
+}
+
+.status-display {
+  border: 1px solid #777;
+}
+
+.status-display .status-pending,
+.status-pending .test-info {
+  background-color: #F9EEBC;
+}
+
+.status-display .status-success,
+.status-success .test-info {
+  background-color: #B1D7A1;
+}
+
+.status-display .status-failure,
+.status-failure .test-info {
+  background-color: #FF8286;
+}
+
+.status-display .status-error,
+.status-error .test-info {
+  background-color: black;
+  color: white;
+}
+
+.test-actions .status-success .test-title {
+  color: #30B30A;
+}
+
+.test-actions .status-failure .test-title {
+  color: #DF0000;
+}
+
+.test-actions .status-error .test-title {
+  color: black;
+}
+
+.test-actions .timer-result {
+  color: #888;
+}
+</style><style type="text/css">@charset "UTF-8";
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+  display: none !important;
+}
+
+ng\:form {
+  display: block;
+}
+
+.ng-animate-shim {
+  visibility:hidden;
+}
+
+.ng-anchor {
+  position:absolute;
+}
+</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <meta charset="utf-8" />
+    <title>In-house</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="In-house Quotation System" />
+    <meta name="keywords" content="insurance,quote,policy" />
+    <meta name="author" content="Allegro Team" />
+    <meta name="version" content="1.0.1" />
+    <base href="/" />
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,700,300,600,400" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="css/vendor-3cdc2ed6d6.css" />
+
+    <link rel="stylesheet" href="css/app-54bd8f30f4.css" />
+  </head>
+  <body ng-controller="bodyCtrl" ng-class="bodyClass()" class="ng-scope not-logged-in login" style="">
+
+    <!-- uiView:  --><div ui-view="" class="ng-scope"><section id="main" class="ng-scope">
+  <div class="main-content">
+    <!-- ngRepeat: alert in alerts -->
+
+    <div class="container">
+      <div class="col-sm-offset-3 col-sm-6">
+        <!-- uiView:  --><div ui-view="" class="ng-scope"><div class="panel panel-default ng-scope">
+  <div class="panel-body">
+    <h1 class="text-center m-t-30 m-b-30">Sign In</h1>
+
+    <hr class="slash" />
+
+    <form class="form-horizontal form-central ng-pristine ng-invalid ng-invalid-required" name="loginForm" ng-submit="submitForm()" novalidate="">
+      <div class="form-group relative" ng-class="{ 'has-error': hasError(loginForm, 'username') }">
+        <span class="glyphicon glyphicon-envelope"></span>
+        <input type="text" name="username" ng-model="username" class="form-control input-xl text-center ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" placeholder="username" required="" />
+        <span class="help-block ng-hide" ng-show="hasError(loginForm, 'username', 'required')">Username is required</span>
+      </div>
+      <div class="form-group relative" ng-class="{ 'has-error': hasError(loginForm, 'password') }">
+        <span class="glyphicon glyphicon-lock"></span>
+        <input type="password" name="password" ng-model="password" class="form-control input-xl text-center ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" placeholder="Password" required="" />
+        <span class="help-block ng-hide" ng-show="hasError(loginForm, 'password', 'required')">Password is required</span>
+      </div>
+      <div class="form-group">
+        <button class="btn btn-primary btn-hollow btn-lg btn-block m-t-20 m-b-20" type="submit">Sign in</button>
+      </div>
+      <p class="text-center text-grey base">
+        <span class="glyphicon glyphicon-question-sign"></span> Forgot your password? <a href="" ng-click="forgetPassword()">Click here</a>
+      </p>
+    </form>
+  </div>
+</div>
+</div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+    <script src="js/vendor-9490cbec44.js"></script>
+
+    <script src="js/app-fb7657dd02.js"></script>
+
+  
+
+</body></html>

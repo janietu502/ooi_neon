@@ -1,0 +1,431 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head lang="en"><style type="text/css">@charset "UTF-8";
+/* CSS Document */
+
+/** Structure */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  font-size: 14px;
+}
+
+#system-error {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+#json, #xml {
+  display: none;
+}
+
+#header {
+  position: fixed;
+  width: 100%;
+}
+
+#specs {
+  padding-top: 50px;
+}
+
+#header .angular {
+  font-family: Courier New, monospace;
+  font-weight: bold;
+}
+
+#header h1 {
+  font-weight: normal;
+  float: left;
+  font-size: 30px;
+  line-height: 30px;
+  margin: 0;
+  padding: 10px 10px;
+  height: 30px;
+}
+
+#application h2,
+#specs h2 {
+  margin: 0;
+  padding: 0.5em;
+  font-size: 1.1em;
+}
+
+#status-legend {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+#header,
+#application,
+.test-info,
+.test-actions li {
+  overflow: hidden;
+}
+
+#application {
+  margin: 10px;
+}
+
+#application iframe {
+  width: 100%;
+  height: 758px;
+}
+
+#application .popout {
+  float: right;
+}
+
+#application iframe {
+  border: none;
+}
+
+.tests li,
+.test-actions li,
+.test-it li,
+.test-it ol,
+.status-display {
+  list-style-type: none;
+}
+
+.tests,
+.test-it ol,
+.status-display {
+  margin: 0;
+  padding: 0;
+}
+
+.test-info {
+  margin-left: 1em;
+  margin-top: 0.5em;
+  border-radius: 8px 0 0 8px;
+  -webkit-border-radius: 8px 0 0 8px;
+  -moz-border-radius: 8px 0 0 8px;
+  cursor: pointer;
+}
+
+.test-info:hover .test-name {
+  text-decoration: underline;
+}
+
+.test-info .closed:before {
+  content: '\25b8\00A0';
+}
+
+.test-info .open:before {
+  content: '\25be\00A0';
+  font-weight: bold;
+}
+
+.test-it ol {
+  margin-left: 2.5em;
+}
+
+.status-display,
+.status-display li {
+  float: right;
+}
+
+.status-display li {
+  padding: 5px 10px;
+}
+
+.timer-result,
+.test-title {
+  display: inline-block;
+  margin: 0;
+  padding: 4px;
+}
+
+.test-actions .test-title,
+.test-actions .test-result {
+  display: table-cell;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.test-actions {
+  display: table;
+}
+
+.test-actions li {
+  display: table-row;
+}
+
+.timer-result {
+  width: 4em;
+  padding: 0 10px;
+  text-align: right;
+  font-family: monospace;
+}
+
+.test-it pre,
+.test-actions pre {
+  clear: left;
+  color: black;
+  margin-left: 6em;
+}
+
+.test-describe {
+  padding-bottom: 0.5em;
+}
+
+.test-describe .test-describe {
+  margin: 5px 5px 10px 2em;
+}
+
+.test-actions .status-pending .test-title:before {
+  content: '\00bb\00A0';
+}
+
+.scrollpane {
+   max-height: 20em;
+   overflow: auto;
+}
+
+/** Colors */
+
+#header {
+  background-color: #F2C200;
+}
+
+#specs h2 {
+  border-top: 2px solid #BABAD1;
+}
+
+#specs h2,
+#application h2 {
+  background-color: #efefef;
+}
+
+#application {
+  border: 1px solid #BABAD1;
+}
+
+.test-describe .test-describe {
+  border-left: 1px solid #BABAD1;
+  border-right: 1px solid #BABAD1;
+  border-bottom: 1px solid #BABAD1;
+}
+
+.status-display {
+  border: 1px solid #777;
+}
+
+.status-display .status-pending,
+.status-pending .test-info {
+  background-color: #F9EEBC;
+}
+
+.status-display .status-success,
+.status-success .test-info {
+  background-color: #B1D7A1;
+}
+
+.status-display .status-failure,
+.status-failure .test-info {
+  background-color: #FF8286;
+}
+
+.status-display .status-error,
+.status-error .test-info {
+  background-color: black;
+  color: white;
+}
+
+.test-actions .status-success .test-title {
+  color: #30B30A;
+}
+
+.test-actions .status-failure .test-title {
+  color: #DF0000;
+}
+
+.test-actions .status-error .test-title {
+  color: black;
+}
+
+.test-actions .timer-result {
+  color: #888;
+}
+</style><style type="text/css">@charset "UTF-8";
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+  display: none !important;
+}
+
+ng\:form {
+  display: block;
+}
+
+.ng-animate-shim {
+  visibility:hidden;
+}
+
+.ng-anchor {
+  position:absolute;
+}
+</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <meta charset="utf-8" />
+    <title>In-house</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="In-house Quotation System" />
+    <meta name="keywords" content="insurance,quote,policy" />
+    <meta name="author" content="Allegro Team" />
+    <meta name="version" content="1.0.3" />
+    <base href="/" />
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,700,300,600,400" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="css/vendor-899ff0a52c.css" />
+
+    <link rel="stylesheet" href="css/app-9b6fe2b937.css" />
+  </head>
+  <body ng-controller="bodyCtrl" ng-class="bodyClass()" class="ng-scope main policies start-quote" style="">
+
+    <!-- uiView:  --><div ui-view="" class="ng-scope"><div id="wrapper" class="ng-scope">
+  <!-- uiView: header --><div ui-view="header" class="ng-scope"><nav class="navbar navbar-default navbar-fixed-top ng-scope ng-isolate-scope headroom headroom--top" headroom="">
+  <div class="container-fluid">
+
+    <!-- brand and toggle -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ui-sref="main.dashboard" href="/">Logo</a>
+    </div>
+    <!-- /.brand and toggle -->
+
+    <div class="collapse navbar-collapse" id="main-navbar-collapse">
+
+      <!-- nav links -->
+      <ul class="nav navbar-nav navbar-left">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Policies <span class="caret"></span></a>
+          <ul class="dropdown-menu standard-menu">
+            <li><a ui-sref="main.policies.startQuote" href="/policies/start-quote">New Quote</a></li>
+            <li><a ui-sref="main.policies.list" href="/policies">Existing Policies/Quotes</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Claims <span class="caret"></span></a>
+          <ul class="dropdown-menu standard-menu">
+            <li><a href="#">New Claim</a></li>
+            <li><a href="#">Maintenance</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brokers <span class="caret"></span></a>
+          <ul class="dropdown-menu standard-menu">
+            <li><a ui-sref="wizard.agents.new" href="/agents/new">New Agent</a></li>
+            <li><a ui-sref="main.agents.list" href="/agents">Maintenance</a></li>
+          </ul>
+        </li>
+        <li><a ui-sref="main.reports.list" href="/reports">Reports</a></li>
+      </ul>
+      <!-- /.nav links -->
+
+      <!-- right side -->
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Hi, <strong class="ng-binding">Rocky Chen</strong> <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu standard-menu">
+            <li><a href="#">Account Settings</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="" ng-click="logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!-- /.right side -->
+
+    </div>
+  </div>
+</nav>
+</div>
+
+  <div class="page-body">
+    <section id="main">
+      <div class="main-content">
+        <!-- ngRepeat: alert in alerts -->
+
+        <!-- uiView:  --><div ui-view="" class="container-fluid p-t-20 p-b-20 ng-scope"><!-- uiView: undefined --><ui-view class="ng-scope"><form name="form" ng-submit="submitForm(form)" novalidate="" class="ng-scope ng-invalid ng-invalid-required ng-dirty ng-valid-parse ng-invalid-valid-agent" style="">
+  <div class="panel">
+    <div class="panel-body">
+      <h2 class="primary-title size-h1">New Quote</h2>
+
+      <!-- Search Agent -->
+      <h3 class="section-title">Search Agent</h3>
+      <div class="m-b-10 clearfix">
+        <div class="form-group col-sm-3 col-lg-1" ng-class="{ 'has-error': hasError(form, 'agentNumber') }">
+          <input type="text" class="form-control input-lg ng-untouched ng-not-empty ng-dirty ng-valid-parse ng-valid-required ng-invalid ng-invalid-valid-agent" name="agentNumber" ng-model="agentNumber" ng-change="getAgentByNumber()" placeholder="Agent No." number-mask="" required="" style="" />
+          <span class="help-block ng-hide" ng-show="hasError(form, 'agentNumber', 'required')">Please provide agent number</span>
+          <span class="help-block ng-hide" ng-show="agentNumber &amp;&amp; hasError(form, 'agentNumber', 'validAgent')">Please provide available agent number</span>
+        </div>
+
+        <div class="pull-left m-r-5">
+          <p class="form-control-static alert alert-warning p-10" ng-show="!agent">
+            Could not find the agent? <span class="fake-link" ng-click="openModal()">Give me all agents</span>
+          </p>
+          <p class="form-control-static alert alert-success p-10 ng-hide" ng-show="agent">
+            <span class="glyphicon glyphicon-ok"></span> You have chosen agent <strong class="ng-binding"></strong>
+          </p>
+        </div>
+      </div>
+      <!-- /.Search Agent -->
+
+      <hr class="slash" />
+
+      <!-- Policy Type -->
+      <h3 class="section-title">Policy Type</h3>
+      <div class="policy-type-blocks form-group m-b-0 clearfix" ng-class="{ 'has-error': hasError(form, 'policyType') }">
+        <!-- ngRepeat: option in policyTypesOptions --><label ng-repeat="option in policyTypesOptions" class="policy-type-block lhi" ng-class="{ 'disabled': !option.isAvailable, 'active': form.policyType.$viewValue === option.value }" for="optionLANDLORD_HOUSEHOLD">
+          <div class="square"><div class="icon"></div></div>
+          <h4 class="title text-center ng-binding">Landlord Household Insurance</h4>
+          <input type="radio" id="optionLANDLORD_HOUSEHOLD" name="policyType" ng-model="$parent.policyType" ng-value="option.value" ng-disabled="!option.isAvailable" ng-change="toSubmitForm(form)" required="" class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" value="LANDLORD_HOUSEHOLD" />
+        </label><!-- end ngRepeat: option in policyTypesOptions --><label ng-repeat="option in policyTypesOptions" class="policy-type-block ooi" ng-class="{ 'disabled': !option.isAvailable, 'active': form.policyType.$viewValue === option.value }" for="optionOWNER_OCCUPIER">
+          <div class="square"><div class="icon"></div></div>
+          <h4 class="title text-center ng-binding">Home Insurance</h4>
+          <input type="radio" id="optionOWNER_OCCUPIER" name="policyType" ng-model="$parent.policyType" ng-value="option.value" ng-disabled="!option.isAvailable" ng-change="toSubmitForm(form)" required="" class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" value="OWNER_OCCUPIER" />
+        </label><!-- end ngRepeat: option in policyTypesOptions --><label ng-repeat="option in policyTypesOptions" class="policy-type-block tci disabled" ng-class="{ 'disabled': !option.isAvailable, 'active': form.policyType.$viewValue === option.value }" for="optionTENANTS_CONTENTS" style="">
+          <div class="square"><div class="icon"></div></div>
+          <h4 class="title text-center ng-binding">Tenants Contents Insurance</h4>
+          <input type="radio" id="optionTENANTS_CONTENTS" name="policyType" ng-model="$parent.policyType" ng-value="option.value" ng-disabled="!option.isAvailable" ng-change="toSubmitForm(form)" required="" class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" value="TENANTS_CONTENTS" disabled="disabled" />
+        </label><!-- end ngRepeat: option in policyTypesOptions --><label ng-repeat="option in policyTypesOptions" class="policy-type-block cpi disabled" ng-class="{ 'disabled': !option.isAvailable, 'active': form.policyType.$viewValue === option.value }" for="optionCOMMERCIAL_PROPERTY" style="">
+          <div class="square"><div class="icon"></div></div>
+          <h4 class="title text-center ng-binding">Commercial Property Insurance</h4>
+          <input type="radio" id="optionCOMMERCIAL_PROPERTY" name="policyType" ng-model="$parent.policyType" ng-value="option.value" ng-disabled="!option.isAvailable" ng-change="toSubmitForm(form)" required="" class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" value="COMMERCIAL_PROPERTY" disabled="disabled" />
+        </label><!-- end ngRepeat: option in policyTypesOptions --><label ng-repeat="option in policyTypesOptions" class="policy-type-block cci disabled" ng-class="{ 'disabled': !option.isAvailable, 'active': form.policyType.$viewValue === option.value }" for="optionCOMMERCIAL_COMBINED" style="">
+          <div class="square"><div class="icon"></div></div>
+          <h4 class="title text-center ng-binding">Commercial Combined Insurance</h4>
+          <input type="radio" id="optionCOMMERCIAL_COMBINED" name="policyType" ng-model="$parent.policyType" ng-value="option.value" ng-disabled="!option.isAvailable" ng-change="toSubmitForm(form)" required="" class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" value="COMMERCIAL_COMBINED" disabled="disabled" />
+        </label><!-- end ngRepeat: option in policyTypesOptions --><label ng-repeat="option in policyTypesOptions" class="policy-type-block lerg disabled" ng-class="{ 'disabled': !option.isAvailable, 'active': form.policyType.$viewValue === option.value }" for="optionLERG_EXPENSES" style="">
+          <div class="square"><div class="icon"></div></div>
+          <h4 class="title text-center ng-binding">Legal Expenses &amp; Rent Guarantee Insurance</h4>
+          <input type="radio" id="optionLERG_EXPENSES" name="policyType" ng-model="$parent.policyType" ng-value="option.value" ng-disabled="!option.isAvailable" ng-change="toSubmitForm(form)" required="" class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" value="LERG_EXPENSES" disabled="disabled" />
+        </label><!-- end ngRepeat: option in policyTypesOptions -->
+      </div>
+      <!-- /.Policy Type -->
+
+    </div>
+  </div>
+</form>
+</ui-view></div>
+      </div>
+    </section>
+  </div>
+</div>
+</div>
+
+    <script src="js/vendor-56b451a2d3.js"></script>
+
+    <script src="js/app-4a36beff2a.js"></script>
+
+  
+
+</body></html>

@@ -1,0 +1,4 @@
+-------------------------------------------------------------------------------
+Test set: com.rga.neon.test.spec.NE8Spec
+-------------------------------------------------------------------------------
+Tests run: 3, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.049 sec - in com.rga.neon.test.spec.NE8Spec

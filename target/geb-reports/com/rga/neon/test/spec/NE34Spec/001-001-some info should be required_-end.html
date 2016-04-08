@@ -1,0 +1,653 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head lang="en"><style type="text/css">@charset "UTF-8";
+/* CSS Document */
+
+/** Structure */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  font-size: 14px;
+}
+
+#system-error {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+#json, #xml {
+  display: none;
+}
+
+#header {
+  position: fixed;
+  width: 100%;
+}
+
+#specs {
+  padding-top: 50px;
+}
+
+#header .angular {
+  font-family: Courier New, monospace;
+  font-weight: bold;
+}
+
+#header h1 {
+  font-weight: normal;
+  float: left;
+  font-size: 30px;
+  line-height: 30px;
+  margin: 0;
+  padding: 10px 10px;
+  height: 30px;
+}
+
+#application h2,
+#specs h2 {
+  margin: 0;
+  padding: 0.5em;
+  font-size: 1.1em;
+}
+
+#status-legend {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+#header,
+#application,
+.test-info,
+.test-actions li {
+  overflow: hidden;
+}
+
+#application {
+  margin: 10px;
+}
+
+#application iframe {
+  width: 100%;
+  height: 758px;
+}
+
+#application .popout {
+  float: right;
+}
+
+#application iframe {
+  border: none;
+}
+
+.tests li,
+.test-actions li,
+.test-it li,
+.test-it ol,
+.status-display {
+  list-style-type: none;
+}
+
+.tests,
+.test-it ol,
+.status-display {
+  margin: 0;
+  padding: 0;
+}
+
+.test-info {
+  margin-left: 1em;
+  margin-top: 0.5em;
+  border-radius: 8px 0 0 8px;
+  -webkit-border-radius: 8px 0 0 8px;
+  -moz-border-radius: 8px 0 0 8px;
+  cursor: pointer;
+}
+
+.test-info:hover .test-name {
+  text-decoration: underline;
+}
+
+.test-info .closed:before {
+  content: '\25b8\00A0';
+}
+
+.test-info .open:before {
+  content: '\25be\00A0';
+  font-weight: bold;
+}
+
+.test-it ol {
+  margin-left: 2.5em;
+}
+
+.status-display,
+.status-display li {
+  float: right;
+}
+
+.status-display li {
+  padding: 5px 10px;
+}
+
+.timer-result,
+.test-title {
+  display: inline-block;
+  margin: 0;
+  padding: 4px;
+}
+
+.test-actions .test-title,
+.test-actions .test-result {
+  display: table-cell;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.test-actions {
+  display: table;
+}
+
+.test-actions li {
+  display: table-row;
+}
+
+.timer-result {
+  width: 4em;
+  padding: 0 10px;
+  text-align: right;
+  font-family: monospace;
+}
+
+.test-it pre,
+.test-actions pre {
+  clear: left;
+  color: black;
+  margin-left: 6em;
+}
+
+.test-describe {
+  padding-bottom: 0.5em;
+}
+
+.test-describe .test-describe {
+  margin: 5px 5px 10px 2em;
+}
+
+.test-actions .status-pending .test-title:before {
+  content: '\00bb\00A0';
+}
+
+.scrollpane {
+   max-height: 20em;
+   overflow: auto;
+}
+
+/** Colors */
+
+#header {
+  background-color: #F2C200;
+}
+
+#specs h2 {
+  border-top: 2px solid #BABAD1;
+}
+
+#specs h2,
+#application h2 {
+  background-color: #efefef;
+}
+
+#application {
+  border: 1px solid #BABAD1;
+}
+
+.test-describe .test-describe {
+  border-left: 1px solid #BABAD1;
+  border-right: 1px solid #BABAD1;
+  border-bottom: 1px solid #BABAD1;
+}
+
+.status-display {
+  border: 1px solid #777;
+}
+
+.status-display .status-pending,
+.status-pending .test-info {
+  background-color: #F9EEBC;
+}
+
+.status-display .status-success,
+.status-success .test-info {
+  background-color: #B1D7A1;
+}
+
+.status-display .status-failure,
+.status-failure .test-info {
+  background-color: #FF8286;
+}
+
+.status-display .status-error,
+.status-error .test-info {
+  background-color: black;
+  color: white;
+}
+
+.test-actions .status-success .test-title {
+  color: #30B30A;
+}
+
+.test-actions .status-failure .test-title {
+  color: #DF0000;
+}
+
+.test-actions .status-error .test-title {
+  color: black;
+}
+
+.test-actions .timer-result {
+  color: #888;
+}
+</style><style type="text/css">@charset "UTF-8";
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+  display: none !important;
+}
+
+ng\:form {
+  display: block;
+}
+
+.ng-animate-shim {
+  visibility:hidden;
+}
+
+.ng-anchor {
+  position:absolute;
+}
+</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <meta charset="utf-8" />
+    <title>In-house</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="In-house Quotation System" />
+    <meta name="keywords" content="insurance,quote,policy" />
+    <meta name="author" content="Allegro Team" />
+    <meta name="version" content="1.0.3" />
+    <base href="/" />
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,700,300,600,400" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="css/vendor-899ff0a52c.css" />
+
+    <link rel="stylesheet" href="css/app-d7f92644fc.css" />
+  </head>
+  <body ng-controller="bodyCtrl" ng-class="bodyClass()" class="ng-scope wizard agents new" style="">
+
+    <!-- uiView:  --><div ui-view="" class="ng-scope"><div id="wrapper" class="ng-scope">
+  <!-- uiView: header --><div ui-view="header" class="ng-scope"><nav class="navbar navbar-default navbar-fixed-top ng-scope ng-isolate-scope headroom headroom--not-top headroom--unpinned" headroom="">
+  <div class="container-fluid">
+
+    <!-- brand and toggle -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ui-sref="main.dashboard" href="/">Logo</a>
+    </div>
+    <!-- /.brand and toggle -->
+
+    <div class="collapse navbar-collapse" id="main-navbar-collapse">
+
+      <!-- nav links -->
+      <ul class="nav navbar-nav navbar-left">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Policies <span class="caret"></span></a>
+          <ul class="dropdown-menu standard-menu">
+            <li><a ui-sref="main.policies.startQuote" href="/policies/start-quote">New Quote</a></li>
+            <li><a ui-sref="main.policies.list" href="/policies">Existing Policies/Quotes</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Claims <span class="caret"></span></a>
+          <ul class="dropdown-menu standard-menu">
+            <li><a href="#">New Claim</a></li>
+            <li><a href="#">Maintenance</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brokers <span class="caret"></span></a>
+          <ul class="dropdown-menu standard-menu">
+            <li><a ui-sref="wizard.agents.new" href="/agents/new">New Agent</a></li>
+            <li><a ui-sref="main.agents.list" href="/agents">Maintenance</a></li>
+          </ul>
+        </li>
+        <li><a ui-sref="main.reports.list" href="/reports">Reports</a></li>
+      </ul>
+      <!-- /.nav links -->
+
+      <!-- right side -->
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Hi, <strong class="ng-binding">Rocky Chen</strong> <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu standard-menu">
+            <li><a href="#">Account Settings</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="" ng-click="logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!-- /.right side -->
+
+    </div>
+  </div>
+</nav>
+</div>
+
+  <div class="page-body">
+    <!-- uiView: stepsNav --><div ui-view="stepsNav" class="ng-scope"><section class="steps-nav-bar ng-scope">
+  <ul class="steps-nav">
+    <!-- ngRepeat: step in steps --><li ng-repeat="step in steps" ng-class="{ 'finished': step.isDone, 'disabled': step.isLocked }" class="ng-scope">
+      <a ng-href="#basic-information" class="icon-basic-information" du-smooth-scroll="" href="#basic-information">
+        <span class="label ng-binding">Basic Information</span>
+      </a>
+    </li><!-- end ngRepeat: step in steps --><li ng-repeat="step in steps" ng-class="{ 'finished': step.isDone, 'disabled': step.isLocked }" class="ng-scope">
+      <a ng-href="#commission" class="icon-commission" du-smooth-scroll="" href="#commission">
+        <span class="label ng-binding">Commission</span>
+      </a>
+    </li><!-- end ngRepeat: step in steps --><li ng-repeat="step in steps" ng-class="{ 'finished': step.isDone, 'disabled': step.isLocked }" class="ng-scope">
+      <a ng-href="#contact-details" class="icon-contact-details" du-smooth-scroll="" href="#contact-details">
+        <span class="label ng-binding">Contact Details</span>
+      </a>
+    </li><!-- end ngRepeat: step in steps -->
+  </ul>
+</section>
+</div>
+
+    <section id="main">
+      <div class="main-content">
+        <!-- ngRepeat: alert in alerts -->
+
+        <!-- uiView:  --><div ui-view="" class="ng-scope"><!-- uiView: undefined --><ui-view class="ng-scope"><div class="step-sections ng-scope">
+
+  <div class="panel">
+    <form class="form-horizontal ng-invalid ng-invalid-required ng-valid-pattern ng-valid-email ng-dirty ng-valid-parse ng-submitted" name="form" ng-submit="submitForm(form)" novalidate="" style="">
+      <section class="step-section panel-body">
+        <!-- Basic Information -->
+        <section id="basic-information">
+          <h2 class="size-h1">Basic Information</h2>
+
+          <div class="row">
+            <div class="form-group clearfix has-error" ng-class=" { 'has-error': hasError(form, 'agentNumber') } " style="">
+              <label class="col-sm-4 control-label">Agent Number:</label>
+              <div class="col-sm-3">
+                <input type="text" name="agentNumber" ng-model="agent.number" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-blur="isAgentNumberDuplicate(agent.number)" ng-change="isDuplicate = false" number-mask="" required="" />
+                <span class="help-block" ng-show="hasError(form, 'agentNumber', 'required')" style="">Agent number is required</span>
+                <span class="help-block ng-hide" ng-show="isDuplicate">The number is already picked</span>
+              </div>
+            </div>
+            <div class="form-group clearfix has-error" ng-class=" { 'has-error': hasError(form, 'companyName') } ">
+              <label class="col-sm-4 control-label">Company Name:</label>
+              <div class="col-sm-3">
+                <input type="text" name="companyName" ng-model="agent.name" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" required="" />
+                <span class="help-block" ng-show="hasError(form, 'companyName', 'required')" style="">Company name is required</span>
+              </div>
+            </div>
+            <div class="form-group clearfix has-error" ng-class=" { 'has-error': hasError(form, 'agreementDate') } ">
+              <label class="col-sm-4 control-label">Agreement Date:</label>
+              <div class="col-sm-3 col-lg-2">
+                <div class="input-group datepicker-group">
+                  <input type="text" name="agreementDate" ng-model="agent.agreementDate" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required hasDatepicker" readonly="" ui-date="dateOptions" ng-change="setAgreementDate(agreementDate)" required="" id="dp1459451191322" /><button type="button" class="ui-datepicker-trigger"><span class="input-group-addon"><span class="glyphicon-calendar glyphicon"></span></span></button>
+                  <span class="help-block" ng-show="hasError(form, 'agreementDate', 'required')" style="">Agreement date is required</span>
+                </div>
+              </div>
+            </div>
+            <div class="form-group clearfix has-error" ng-class=" { 'has-error': hasError(form, 'isFca') } ">
+              <label class="col-sm-4 control-label">FCA Regulated:</label>
+              <div class="col-sm-3">
+                <div class="radio radio-inline">
+                  <input name="isFca" type="radio" id="isFcaTrue" ng-model="agent.isFca" ng-value="true" value="true" required="" ng-click="setAgentTypeAsFca()" class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" /><label for="isFcaTrue">Yes</label>
+                </div>
+                <div class="radio radio-inline">
+                  <input name="isFca" type="radio" id="isFcaFalse" ng-model="agent.isFca" ng-value="false" value="false" required="" class="ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" /><label for="isFcaFalse">No</label>
+                </div>
+                <span class="help-block" ng-show="hasError(form, 'isFca', 'required')" style="">FCA regulated is required</span>
+              </div>
+            </div>
+            <div class="form-group clearfix" ng-class=" { 'has-error': hasError(form, 'fcaReferenceNumber') } ">
+              <label class="col-sm-4 control-label">FCA Ref. No. :</label>
+              <div class="col-sm-3">
+                <input type="text" name="fcaReferenceNumber" ng-model="agent.fcaReferenceNumber" class="form-control ng-pristine ng-untouched ng-empty ng-valid ng-valid-required" ng-required="agent.isFca" />
+                <span class="help-block ng-hide" ng-show="hasError(form, 'fcaReferenceNumber', 'required')">FCA Ref. No. is required</span>
+              </div>
+            </div>
+            <div class="form-group clearfix has-error" ng-class=" { 'has-error': hasError(form, 'agentType') } ">
+              <label class="col-sm-4 control-label">Agent Type:</label>
+              <div class="col-sm-3">
+                <select name="agentType" ng-model="agent.type" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-options="option.value as option.text for option in agentTypes" required=""><option value="" class="" selected="selected">Please Select</option><option label="FCA Broker" value="string:FCA_BROKER">FCA Broker</option><option label="Introducer" value="string:INTRODUCER">Introducer</option><option label="Direct" value="string:RGA_DIRECT">Direct</option></select>
+                <span class="help-block" ng-show="hasError(form, 'agentType', 'required')" style="">Agent Type is required</span>
+              </div>
+            </div>
+            <div class="form-group clearfix" ng-class=" { 'has-error': hasError(form, 'agentStatus') } ">
+              <label class="col-sm-4 control-label">Agent Status:</label>
+              <div class="col-sm-3">
+                <select name="agentStatus" ng-model="agent.status" class="form-control ng-valid ng-not-empty ng-valid-required ng-dirty ng-valid-parse ng-touched" ng-options="option.value as option.text for option in agentStatuses" ng-init="agent.status = 'ACTIVE'" required="" style=""><option label="Prospect" value="string:PROSPECT">Prospect</option><option label="Active" value="string:ACTIVE" selected="selected">Active</option><option label="Blacklist" value="string:BLACKLIST">Blacklist</option></select>
+                <span class="help-block ng-hide" ng-show="hasError(form, 'agentStatus', 'required')">Agent status is required</span>
+              </div>
+            </div>
+            <div class="form-group clearfix has-error" ng-class=" { 'has-error': hasError(form, 'accountManager') } ">
+              <label class="col-sm-4 control-label">Account Manager:</label>
+              <div class="col-sm-3">
+                <select name="accountManager" ng-model="agent.accountManagerId" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" ng-options="option.value as option.text for option in employees" required=""><option value="" class="" selected="selected">Please Select</option><option label="Rocky Chen" value="string:1">Rocky Chen</option><option label="Rocko Tseng" value="string:2">Rocko Tseng</option><option label="Cheryl Yu" value="string:3">Cheryl Yu</option><option label="Milguel Callon" value="string:4">Milguel Callon</option><option label="Janie Tu" value="string:5">Janie Tu</option><option label="Xiao Cao" value="string:7">Xiao Cao</option><option label="Kim O Donnell" value="string:8">Kim O Donnell</option><option label="Jessica Xiao" value="string:9">Jessica Xiao</option></select>
+                <span class="help-block" ng-show="hasError(form, 'accountManager', 'required')" style="">Account manager is required</span>
+              </div>
+            </div>
+            <div class="form-group clearfix" ng-class=" { 'has-error': hasError(form, 'isPolicyCorrespondent') } ">
+              <div class="col-sm-offset-4 col-sm-6">
+                <div class="checkbox">
+                  <input id="isPolicyCorrespondent" type="checkbox" name="isPolicyCorrespondent" ng-model="agent.isPolicyCorrespondent" ng-init="agent.isPolicyCorrespondent = false" class="ng-pristine ng-untouched ng-valid ng-empty" />
+                  <label for="isPolicyCorrespondent">
+                    Is policy correspondent
+                  </label>
+                </div>
+              </div>
+
+            </div>
+          </div>
+        </section>
+        <!-- /.Basic Information -->
+
+        <!-- Commission -->
+        <section id="commission">
+          <h2 class="size-h1">Commission</h2>
+
+          <div class="row">
+            <div class="form-group clearfix has-error" ng-class="{ 'has-error': hasError(form, 'commissionRate') }" style="">
+              <label class="col-sm-4 control-label">Agent Commission:</label>
+              <div class="col-sm-4 col-md-3 col-lg-2">
+                <div class="input-group">
+                  <input type="text" name="commissionRate" ng-model="agent.commissionRate" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" required="" />
+                  <div class="input-group-addon">%</div>
+                </div>
+                <span class="help-block" ng-show="hasError(form, 'commissionRate', 'required')" style="">Agent commission is required</span>
+              </div>
+            </div>
+            <div class="form-group clearfix">
+              <div class="col-sm-offset-4 col-sm-6">
+                <div class="checkbox">
+                  <input id="isCommissionShownOnInvoice" type="checkbox" name="isCommissionShownOnInvoice" ng-model="agent.isCommissionShownOnInvoice" ng-init="agent.isCommissionShownOnInvoice = false" class="ng-pristine ng-untouched ng-valid ng-empty" />
+                  <label for="isCommissionShownOnInvoice">
+                    Is shown on invoice
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- /.Commission -->
+
+        <!-- Contact Details -->
+        <section id="contact-details">
+          <h2 class="size-h1">Contact Details</h2>
+          <!-- ngIf: mode === 'NEW' --><div class="row ng-scope" ng-if="mode === 'NEW'">
+            <!-- TODO: make it as directive or component and share with single contact details -->
+            <div class="col-lg-6 with-border-right">
+              <h3>Contact Info</h3>
+              <div class="form-group">
+                <label class="col-sm-6 control-label">Will this contact be the primary contact?</label>
+                <div class="col-sm-6">
+                  <label class="switch"><input type="checkbox" name="isPrimary" ng-model="agent.primaryContact.isPrimary" ng-checked="true" ng-disabled="true" class="ng-pristine ng-untouched ng-valid ng-empty" disabled="disabled" checked="checked" /><i></i></label>
+                </div>
+              </div>
+
+              <div class="form-group has-error" ng-class="{ 'has-error': hasError(form, 'title') }" style="">
+                <label class="col-sm-6 control-label">Title:</label>
+                <div class="col-sm-6">
+                  <div class="col-sm-12 p-l-0 p-r-0 has-error" ng-class="{ 'col-sm-6': agent.primaryContact.title == 'Other', 'has-error': hasError(form, 'title') }" style="">
+                    <select name="title" ng-model="agent.primaryContact.title" ng-options="option.value as option.text for option in personalTitles" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" required=""><option value="" class="" selected="selected">Please Select</option><option label="Mr" value="string:Mr">Mr</option><option label="Miss" value="string:Miss">Miss</option><option label="Mrs" value="string:Mrs">Mrs</option><option label="Ms" value="string:Ms">Ms</option><option label="Other" value="string:Other">Other</option></select>
+                    <span class="help-block" ng-show="hasError(form, 'title', 'required')" style="">Please provide title</span>
+                    </div>
+
+                  <div class="col-sm-12 p-l-0 p-r-0 ng-hide" ng-class="{ 'col-sm-6': agent.primaryContact.title == 'Other', 'has-error': hasError(form, 'otherTitle') }" ng-show="agent.primaryContact.title == 'Other'">
+                    <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-valid-pattern ng-valid ng-valid-required" name="otherTitle" ng-model="agent.primaryContact.otherTitle" ng-required="agent.primaryContact.title == 'Other'" ng-pattern="/^([a-zA-Z- ])*$/" />
+                    <span class="help-block ng-hide" ng-show="hasError(form, 'otherTitle', 'required')">Please provide customized title</span>
+                    <span class="help-block ng-hide" ng-show="hasError(form, 'otherTitle', 'pattern')">Invalid customized title</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="form-group has-error" ng-class="{ 'has-error': hasError(form, 'firstName' )}">
+                <label class="col-sm-6 control-label">First Name:</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-pattern" name="firstName" ng-model="agent.primaryContact.firstName" ng-pattern="/^([a-zA-Z- ])*$/" required="" />
+                  <span class="help-block" ng-show="hasError(form, 'firstName', 'required')" style="">Please provide first name</span>
+                  <span class="help-block ng-hide" ng-show="hasError(form, 'firstName', 'pattern')">Invalid first name</span>
+                </div>
+              </div>
+              <div class="form-group has-error" ng-class="{ 'has-error': hasError(form, 'lastName' )}">
+                <label class="col-sm-6 control-label">Last Name:</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-pattern" name="lastName" ng-model="agent.primaryContact.lastName" ng-pattern="/^([a-zA-Z- ])*$/" required="" />
+                  <span class="help-block" ng-show="hasError(form, 'lastName', 'required')" style="">Please provide last name</span>
+                  <span class="help-block ng-hide" ng-show="hasError(form, 'lastName', 'pattern')">Invalid last name</span>
+                </div>
+              </div>
+              <div class="form-group has-error" ng-class="{ 'has-error': hasError(form, 'contactNumber' )}">
+                <label class="col-sm-6 control-label">Number:</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-pattern" name="contactNumber" ng-model="agent.primaryContact.contactNumber" ng-pattern="/^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i" required="" />
+                  <span class="help-block" ng-show="hasError(form, 'contactNumber', 'required')" style="">Please provide contact number</span>
+                  <span class="help-block ng-hide" ng-show="hasError(form, 'contactNumber', 'pattern')">Invalid contact number</span>
+                </div>
+              </div>
+              <div class="form-group" ng-class="{ 'has-error': hasError(form, 'additionNumber' )}">
+                <label class="col-sm-6 control-label">Additional Number:</label>
+                <div class="col-sm-6">
+                  <input type="text" class="form-control ng-pristine ng-untouched ng-valid ng-empty ng-valid-pattern" name="additionNumber" ng-model="agent.primaryContact.additionNumber" ng-pattern="/^(?:(?:\(?(?:00|\+)([1-4]\d\d|[1-9]\d?)\)?)?[\-\.\ \\\/]?)?((?:\(?\d{1,}\)?[\-\.\ \\\/]?){0,})(?:[\-\.\ \\\/]?(?:#|ext\.?|extension|x)[\-\.\ \\\/]?(\d+))?$/i" />
+                  <span class="help-block ng-hide" ng-show="hasError(form, 'additionNumber', 'pattern')">Invalid additional number</span>
+                </div>
+              </div>
+              <div class="form-group has-error" ng-class="{ 'has-error': hasError(form, 'email' )}">
+                <label class="col-sm-6 control-label">Email:</label>
+                <div class="col-sm-6">
+                  <input type="email" name="email" ng-model="agent.primaryContact.email" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-email" required="" />
+                  <span class="help-block" ng-show="hasError(form, 'email', 'required')" style="">Please provide email</span>
+                  <span class="help-block ng-hide" ng-show="hasError(form, 'email', 'email')">Invalid email address</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-6">
+              <h3>Correspondence Address</h3>
+              <div class="form-group clearfix has-error" ng-class="{ 'has-error': hasError(form, 'postcode') || postcodeNotFound }" style="">
+                <label class="col-sm-4 control-label">Postcode:</label>
+                <div class="col-sm-4">
+                  <input type="text" name="postcode" ng-model="agent.primaryContact.correspondenceAddress.postcode" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required ng-valid-pattern" required="" postcode-format="" ng-pattern="/^((gir\s0aa)|((([a-pr-uwyz][a-hk-y]?[0-9][0-9]?)|(([a-pr-uwyz][0-9][a-hjkstuw])|([a-pr-uwyz][a-hk-y][0-9][abehmnprv-y])))\s[0-9][abd-hjlnp-uw-z]{2}))$/i" ng-change="postcodeNotFound = false" />
+                  <span class="help-block" ng-show="hasError(form, 'postcode', 'required')" style="">Please provide postcode</span>
+                  <span class="help-block ng-hide" ng-show="hasError(form, 'postcode', 'pattern')">Invalid postcode</span>
+                  <span class="help-block ng-hide" ng-show="!hasError(form, 'postcode', 'required') &amp;&amp; !hasError(form, 'postcode', 'pattern') &amp;&amp; postcodeNotFound">Could not find postcode, please input address manually</span>
+                </div>
+                <div class="col-sm-4 p-l-0">
+                  <button type="button" class="btn-sm btn-primary btn-hollow" ng-click="postcodeHandler(agent.primaryContact.correspondenceAddress.postcode, 'postcode', form)"><span class="glyphicon glyphicon-search pre-icon"></span>Find Address</button>
+                </div>
+              </div>
+
+              <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">Premises:</label>
+                <div class="col-sm-8">
+                  <select name="premise" ng-model="premise" class="form-control ng-pristine ng-untouched ng-valid ng-empty" ng-change="updateAddress(premise)" ng-class="{ 'active': premiseBuilt }" ng-options="option.value as option.text for option in premises"><option value="" class="" selected="selected">Please Select</option></select>
+                </div>
+              </div>
+
+              <div class="form-group clearfix has-error" ng-class="{ 'has-error': hasError(form, 'line1') }">
+                <label class="col-sm-4 control-label">Address:</label>
+                <div class="col-sm-8">
+                  <input type="text" name="line1" ng-model="agent.primaryContact.correspondenceAddress.line1" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" required="" />
+                  <span class="help-block" ng-show="hasError(form, 'line1', 'required')" style="">Please provide full address</span>
+                </div>
+              </div>
+
+              <div class="form-group clearfix">
+                <div class="col-sm-8 col-sm-offset-4">
+                  <input type="text" name="line2" ng-model="agent.primaryContact.correspondenceAddress.line2" class="form-control ng-pristine ng-untouched ng-valid ng-empty" />
+                </div>
+              </div>
+
+              <div class="form-group clearfix">
+                <label class="col-sm-4 control-label">Town:</label>
+                <div class="col-sm-8">
+                  <input type="text" name="town" ng-model="agent.primaryContact.correspondenceAddress.town" class="form-control ng-pristine ng-untouched ng-valid ng-empty" />
+                </div>
+              </div>
+
+              <div class="form-group clearfix has-error" ng-class="{ 'has-error': hasError(form, 'county') }">
+                <label class="col-sm-4 control-label">County:</label>
+                <div class="col-sm-8">
+                  <input type="text" name="county" ng-model="agent.primaryContact.correspondenceAddress.county" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" required="" />
+                  <span class="help-block" ng-show="hasError(form, 'county', 'required')" style="">Please provide county</span>
+                </div>
+              </div>
+
+              <div class="form-group clearfix has-error" ng-class="{ 'has-error': hasError(form, 'country') }">
+                <label class="col-sm-4 control-label">Country:</label>
+                <div class="col-sm-8">
+                  <input type="text" name="country" ng-model="agent.primaryContact.correspondenceAddress.country" class="form-control ng-pristine ng-untouched ng-empty ng-invalid ng-invalid-required" required="" />
+                  <span class="help-block" ng-show="hasError(form, 'country', 'required')" style="">Please provide country</span>
+                </div>
+              </div>
+            </div>
+          </div><!-- end ngIf: mode === 'NEW' -->
+
+          <!-- ngIf: mode === 'EDIT' -->
+        </section>
+        <!-- /.Contact Details -->
+
+        <div class="action-btns text-center m-t-10 m-b-10">
+          <button class="btn btn-grey btn-hollow" type="button" ng-click="cancel(form)"><span class="glyphicon glyphicon-repeat pre-icon"></span>Cancel</button>
+          <button class="btn btn-primary btn-hollow" type="submit"><span class="glyphicon glyphicon-floppy-disk pre-icon"></span>Save</button>
+        </div>
+      </section>
+    </form>
+  </div>
+</div>
+</ui-view></div>
+      </div>
+    </section>
+
+    <!-- uiView: aside --><div ui-view="aside" class="ng-scope"></div>
+  </div>
+</div>
+</div>
+
+    <script src="js/vendor-a0136ec1d1.js"></script>
+
+    <script src="js/app-0cf446b8be.js"></script>
+
+  
+
+<div id="ui-datepicker-div" class="ui-datepicker ui-widget ui-widget-content ui-helper-clearfix ui-corner-all"><div class="ui-datepicker-header ui-widget-header ui-helper-clearfix ui-corner-all"><a class="ui-datepicker-prev ui-corner-all" data-handler="prev" data-event="click" title="Prev"><span class="ui-icon ui-icon-circle-triangle-w">Prev</span></a><a class="ui-datepicker-next ui-corner-all" data-handler="next" data-event="click" title="Next"><span class="ui-icon ui-icon-circle-triangle-e">Next</span></a><div class="ui-datepicker-title"><select class="ui-datepicker-month" data-handler="selectMonth" data-event="change"><option value="0">Jan</option><option value="1">Feb</option><option value="2" selected="selected">Mar</option><option value="3">Apr</option><option value="4">May</option><option value="5">Jun</option><option value="6">Jul</option><option value="7">Aug</option><option value="8">Sep</option><option value="9">Oct</option><option value="10">Nov</option><option value="11">Dec</option></select><select class="ui-datepicker-year" data-handler="selectYear" data-event="change"><option value="1900">1900</option><option value="1901">1901</option><option value="1902">1902</option><option value="1903">1903</option><option value="1904">1904</option><option value="1905">1905</option><option value="1906">1906</option><option value="1907">1907</option><option value="1908">1908</option><option value="1909">1909</option><option value="1910">1910</option><option value="1911">1911</option><option value="1912">1912</option><option value="1913">1913</option><option value="1914">1914</option><option value="1915">1915</option><option value="1916">1916</option><option value="1917">1917</option><option value="1918">1918</option><option value="1919">1919</option><option value="1920">1920</option><option value="1921">1921</option><option value="1922">1922</option><option value="1923">1923</option><option value="1924">1924</option><option value="1925">1925</option><option value="1926">1926</option><option value="1927">1927</option><option value="1928">1928</option><option value="1929">1929</option><option value="1930">1930</option><option value="1931">1931</option><option value="1932">1932</option><option value="1933">1933</option><option value="1934">1934</option><option value="1935">1935</option><option value="1936">1936</option><option value="1937">1937</option><option value="1938">1938</option><option value="1939">1939</option><option value="1940">1940</option><option value="1941">1941</option><option value="1942">1942</option><option value="1943">1943</option><option value="1944">1944</option><option value="1945">1945</option><option value="1946">1946</option><option value="1947">1947</option><option value="1948">1948</option><option value="1949">1949</option><option value="1950">1950</option><option value="1951">1951</option><option value="1952">1952</option><option value="1953">1953</option><option value="1954">1954</option><option value="1955">1955</option><option value="1956">1956</option><option value="1957">1957</option><option value="1958">1958</option><option value="1959">1959</option><option value="1960">1960</option><option value="1961">1961</option><option value="1962">1962</option><option value="1963">1963</option><option value="1964">1964</option><option value="1965">1965</option><option value="1966">1966</option><option value="1967">1967</option><option value="1968">1968</option><option value="1969">1969</option><option value="1970">1970</option><option value="1971">1971</option><option value="1972">1972</option><option value="1973">1973</option><option value="1974">1974</option><option value="1975">1975</option><option value="1976">1976</option><option value="1977">1977</option><option value="1978">1978</option><option value="1979">1979</option><option value="1980">1980</option><option value="1981">1981</option><option value="1982">1982</option><option value="1983">1983</option><option value="1984">1984</option><option value="1985">1985</option><option value="1986">1986</option><option value="1987">1987</option><option value="1988">1988</option><option value="1989">1989</option><option value="1990">1990</option><option value="1991">1991</option><option value="1992">1992</option><option value="1993">1993</option><option value="1994">1994</option><option value="1995">1995</option><option value="1996">1996</option><option value="1997">1997</option><option value="1998">1998</option><option value="1999">1999</option><option value="2000">2000</option><option value="2001">2001</option><option value="2002">2002</option><option value="2003">2003</option><option value="2004">2004</option><option value="2005">2005</option><option value="2006">2006</option><option value="2007">2007</option><option value="2008">2008</option><option value="2009">2009</option><option value="2010">2010</option><option value="2011">2011</option><option value="2012">2012</option><option value="2013">2013</option><option value="2014">2014</option><option value="2015">2015</option><option value="2016" selected="selected">2016</option></select></div></div><table class="ui-datepicker-calendar"><thead><tr><th scope="col" class="ui-datepicker-week-end"><span title="Sunday">Su</span></th><th scope="col"><span title="Monday">Mo</span></th><th scope="col"><span title="Tuesday">Tu</span></th><th scope="col"><span title="Wednesday">We</span></th><th scope="col"><span title="Thursday">Th</span></th><th scope="col"><span title="Friday">Fr</span></th><th scope="col" class="ui-datepicker-week-end"><span title="Saturday">Sa</span></th></tr></thead><tbody><tr><td class=" ui-datepicker-week-end ui-datepicker-other-month " data-handler="selectDay" data-event="click" data-month="1" data-year="2016"><a class="ui-state-default ui-priority-secondary" href="#">28</a></td><td class=" ui-datepicker-other-month " data-handler="selectDay" data-event="click" data-month="1" data-year="2016"><a class="ui-state-default ui-priority-secondary" href="#">29</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">1</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">2</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">3</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">4</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">5</a></td></tr><tr><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">6</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">7</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">8</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">9</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">10</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">11</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">12</a></td></tr><tr><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">13</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">14</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">15</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">16</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">17</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">18</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">19</a></td></tr><tr><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">20</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">21</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">22</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">23</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">24</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">25</a></td><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">26</a></td></tr><tr><td class=" ui-datepicker-week-end " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">27</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">28</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">29</a></td><td class=" " data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default" href="#">30</a></td><td class=" ui-datepicker-days-cell-over  ui-datepicker-current-day ui-datepicker-today" data-handler="selectDay" data-event="click" data-month="2" data-year="2016"><a class="ui-state-default ui-state-highlight ui-state-active ui-state-hover" href="#">31</a></td><td class=" ui-datepicker-other-month " data-handler="selectDay" data-event="click" data-month="3" data-year="2016"><a class="ui-state-default ui-priority-secondary" href="#">1</a></td><td class=" ui-datepicker-week-end ui-datepicker-other-month " data-handler="selectDay" data-event="click" data-month="3" data-year="2016"><a class="ui-state-default ui-priority-secondary" href="#">2</a></td></tr></tbody></table></div></body></html>

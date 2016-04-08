@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.rga.neon.test.spec.NE25Spec" time="24.588" tests="1" errors="1" skipped="0" failures="0">
+  <properties>
+    <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
+    <property name="sun.boot.library.path" value="/home/janie.tu/dev/lib/jdk1.8.0_60/jre/lib/amd64"/>
+    <property name="java.vm.version" value="25.60-b23"/>
+    <property name="java.vm.vendor" value="Oracle Corporation"/>
+    <property name="maven.multiModuleProjectDirectory" value="/home/janie.tu/dev/workspace/neon-test-suite"/>
+    <property name="java.vendor.url" value="http://java.oracle.com/"/>
+    <property name="path.separator" value=":"/>
+    <property name="guice.disable.misplaced.annotation.check" value="true"/>
+    <property name="java.vm.name" value="Java HotSpot(TM) 64-Bit Server VM"/>
+    <property name="file.encoding.pkg" value="sun.io"/>
+    <property name="user.country" value="GB"/>
+    <property name="sun.java.launcher" value="SUN_STANDARD"/>
+    <property name="sun.os.patch.level" value="unknown"/>
+    <property name="test" value="NE25Spec"/>
+    <property name="java.vm.specification.name" value="Java Virtual Machine Specification"/>
+    <property name="user.dir" value="/home/janie.tu/dev/workspace/neon-test-suite"/>
+    <property name="java.runtime.version" value="1.8.0_60-b27"/>
+    <property name="java.awt.graphicsenv" value="sun.awt.X11GraphicsEnvironment"/>
+    <property name="java.endorsed.dirs" value="/home/janie.tu/dev/lib/jdk1.8.0_60/jre/lib/endorsed"/>
+    <property name="os.arch" value="amd64"/>
+    <property name="java.io.tmpdir" value="/tmp"/>
+    <property name="line.separator" value="&#10;"/>
+    <property name="java.vm.specification.vendor" value="Oracle Corporation"/>
+    <property name="os.name" value="Linux"/>
+    <property name="classworlds.conf" value="/home/janie.tu/dev/lib/maven/bin/m2.conf"/>
+    <property name="sun.jnu.encoding" value="UTF-8"/>
+    <property name="java.library.path" value="/usr/java/packages/lib/amd64:/usr/lib64:/lib64:/lib:/usr/lib"/>
+    <property name="java.specification.name" value="Java Platform API Specification"/>
+    <property name="java.class.version" value="52.0"/>
+    <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
+    <property name="os.version" value="4.0.4-301.fc22.x86_64"/>
+    <property name="user.home" value="/home/janie.tu"/>
+    <property name="user.timezone" value="Europe/London"/>
+    <property name="java.awt.printerjob" value="sun.print.PSPrinterJob"/>
+    <property name="java.specification.version" value="1.8"/>
+    <property name="file.encoding" value="UTF-8"/>
+    <property name="user.name" value="janie.tu"/>
+    <property name="java.class.path" value="/home/janie.tu/dev/lib/maven/boot/plexus-classworlds-2.5.2.jar"/>
+    <property name="java.vm.specification.version" value="1.8"/>
+    <property name="sun.arch.data.model" value="64"/>
+    <property name="java.home" value="/home/janie.tu/dev/lib/jdk1.8.0_60/jre"/>
+    <property name="sun.java.command" value="org.codehaus.plexus.classworlds.launcher.Launcher -Dtest=NE25Spec test"/>
+    <property name="java.specification.vendor" value="Oracle Corporation"/>
+    <property name="user.language" value="en"/>
+    <property name="awt.toolkit" value="sun.awt.X11.XToolkit"/>
+    <property name="java.vm.info" value="mixed mode"/>
+    <property name="java.version" value="1.8.0_60"/>
+    <property name="java.ext.dirs" value="/home/janie.tu/dev/lib/jdk1.8.0_60/jre/lib/ext:/usr/java/packages/lib/ext"/>
+    <property name="securerandom.source" value="file:/dev/./urandom"/>
+    <property name="sun.boot.class.path" value="/home/janie.tu/dev/lib/jdk1.8.0_60/jre/lib/resources.jar:/home/janie.tu/dev/lib/jdk1.8.0_60/jre/lib/rt.jar:/home/janie.tu/dev/lib/jdk1.8.0_60/jre/lib/sunrsasign.jar:/home/janie.tu/dev/lib/jdk1.8.0_60/jre/lib/jsse.jar:/home/janie.tu/dev/lib/jdk1.8.0_60/jre/lib/jce.jar:/home/janie.tu/dev/lib/jdk1.8.0_60/jre/lib/charsets.jar:/home/janie.tu/dev/lib/jdk1.8.0_60/jre/lib/jfr.jar:/home/janie.tu/dev/lib/jdk1.8.0_60/jre/classes"/>
+    <property name="java.vendor" value="Oracle Corporation"/>
+    <property name="maven.home" value="/home/janie.tu/dev/lib/maven"/>
+    <property name="file.separator" value="/"/>
+    <property name="java.vendor.url.bug" value="http://bugreport.sun.com/bugreport/"/>
+    <property name="sun.cpu.endian" value="little"/>
+    <property name="sun.io.unicode.encoding" value="UnicodeLittle"/>
+    <property name="sun.desktop" value="gnome"/>
+    <property name="sun.cpu.isalist" value=""/>
+  </properties>
+  <testcase name="check the Err msg" classname="com.rga.neon.test.spec.NE25Spec" time="24.588">
+    <error message="element not visible&#10;  (Session info: chrome=47.0.2526.106)&#10;  (Driver info: chromedriver=2.20.353124 (035346203162d32c80f1dce587c8154a1efa0c3b),platform=Linux 4.0.4-301.fc22.x86_64 x86_64) (WARNING: The server did not provide any stacktrace information)&#10;Command duration or timeout: 38 milliseconds&#10;Build info: version: &apos;2.49.0&apos;, revision: &apos;365eeb44deba2067b1761c8862ef21d55250e063&apos;, time: &apos;2016-01-13 11:57:39&apos;&#10;System info: host: &apos;N/A&apos;, ip: &apos;N/A&apos;, os.name: &apos;Linux&apos;, os.arch: &apos;amd64&apos;, os.version: &apos;4.0.4-301.fc22.x86_64&apos;, java.version: &apos;1.8.0_60&apos;&#10;Driver info: org.openqa.selenium.chrome.ChromeDriver&#10;Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=/tmp/.com.google.Chrome.qX1Zot}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=47.0.2526.106, platform=LINUX, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]&#10;Session ID: fe82fbff95131c9842cbead9f386c5aa" type="org.openqa.selenium.ElementNotVisibleException">org.openqa.selenium.ElementNotVisibleException: element not visible
+  (Session info: chrome=47.0.2526.106)
+  (Driver info: chromedriver=2.20.353124 (035346203162d32c80f1dce587c8154a1efa0c3b),platform=Linux 4.0.4-301.fc22.x86_64 x86_64) (WARNING: The server did not provide any stacktrace information)
+Command duration or timeout: 38 milliseconds
+Build info: version: '2.49.0', revision: '365eeb44deba2067b1761c8862ef21d55250e063', time: '2016-01-13 11:57:39'
+System info: host: 'N/A', ip: 'N/A', os.name: 'Linux', os.arch: 'amd64', os.version: '4.0.4-301.fc22.x86_64', java.version: '1.8.0_60'
+Driver info: org.openqa.selenium.chrome.ChromeDriver
+Capabilities [{applicationCacheEnabled=false, rotatable=false, mobileEmulationEnabled=false, chrome={userDataDir=/tmp/.com.google.Chrome.qX1Zot}, takesHeapSnapshot=true, databaseEnabled=false, handlesAlerts=true, hasTouchScreen=false, version=47.0.2526.106, platform=LINUX, browserConnectionEnabled=false, nativeEvents=true, acceptSslCerts=true, locationContextEnabled=true, webStorageEnabled=true, browserName=chrome, takesScreenshot=true, javascriptEnabled=true, cssSelectorsEnabled=true}]
+Session ID: fe82fbff95131c9842cbead9f386c5aa
+	at org.openqa.selenium.remote.ErrorHandler.createThrowable(ErrorHandler.java:206)
+	at org.openqa.selenium.remote.ErrorHandler.throwIfResponseFailed(ErrorHandler.java:158)
+	at org.openqa.selenium.remote.RemoteWebDriver.execute(RemoteWebDriver.java:678)
+	at org.openqa.selenium.remote.RemoteWebElement.execute(RemoteWebElement.java:327)
+	at org.openqa.selenium.remote.RemoteWebElement.click(RemoteWebElement.java:85)
+	at geb.navigator.NonEmptyNavigator.click(NonEmptyNavigator.groovy:437)
+	at geb.content.TemplateDerivedPageContent.click(TemplateDerivedPageContent.groovy:115)
+	at com.rga.neon.test.spec.NE25Spec.check the Err msg(NE25Spec.groovy:31)
+</error>
+    <system-err><![CDATA[Starting ChromeDriver 2.20.353124 (035346203162d32c80f1dce587c8154a1efa0c3b) on port 26209
+Only local connections are allowed.
+]]></system-err>
+  </testcase>
+</testsuite>

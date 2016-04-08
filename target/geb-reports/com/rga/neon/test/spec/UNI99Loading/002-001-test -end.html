@@ -1,0 +1,633 @@
+<!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml"><head lang="en"><style type="text/css">@charset "UTF-8";
+/* CSS Document */
+
+/** Structure */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  font-size: 14px;
+}
+
+#system-error {
+  font-size: 1.5em;
+  text-align: center;
+}
+
+#json, #xml {
+  display: none;
+}
+
+#header {
+  position: fixed;
+  width: 100%;
+}
+
+#specs {
+  padding-top: 50px;
+}
+
+#header .angular {
+  font-family: Courier New, monospace;
+  font-weight: bold;
+}
+
+#header h1 {
+  font-weight: normal;
+  float: left;
+  font-size: 30px;
+  line-height: 30px;
+  margin: 0;
+  padding: 10px 10px;
+  height: 30px;
+}
+
+#application h2,
+#specs h2 {
+  margin: 0;
+  padding: 0.5em;
+  font-size: 1.1em;
+}
+
+#status-legend {
+  margin-top: 10px;
+  margin-right: 10px;
+}
+
+#header,
+#application,
+.test-info,
+.test-actions li {
+  overflow: hidden;
+}
+
+#application {
+  margin: 10px;
+}
+
+#application iframe {
+  width: 100%;
+  height: 758px;
+}
+
+#application .popout {
+  float: right;
+}
+
+#application iframe {
+  border: none;
+}
+
+.tests li,
+.test-actions li,
+.test-it li,
+.test-it ol,
+.status-display {
+  list-style-type: none;
+}
+
+.tests,
+.test-it ol,
+.status-display {
+  margin: 0;
+  padding: 0;
+}
+
+.test-info {
+  margin-left: 1em;
+  margin-top: 0.5em;
+  border-radius: 8px 0 0 8px;
+  -webkit-border-radius: 8px 0 0 8px;
+  -moz-border-radius: 8px 0 0 8px;
+  cursor: pointer;
+}
+
+.test-info:hover .test-name {
+  text-decoration: underline;
+}
+
+.test-info .closed:before {
+  content: '\25b8\00A0';
+}
+
+.test-info .open:before {
+  content: '\25be\00A0';
+  font-weight: bold;
+}
+
+.test-it ol {
+  margin-left: 2.5em;
+}
+
+.status-display,
+.status-display li {
+  float: right;
+}
+
+.status-display li {
+  padding: 5px 10px;
+}
+
+.timer-result,
+.test-title {
+  display: inline-block;
+  margin: 0;
+  padding: 4px;
+}
+
+.test-actions .test-title,
+.test-actions .test-result {
+  display: table-cell;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+
+.test-actions {
+  display: table;
+}
+
+.test-actions li {
+  display: table-row;
+}
+
+.timer-result {
+  width: 4em;
+  padding: 0 10px;
+  text-align: right;
+  font-family: monospace;
+}
+
+.test-it pre,
+.test-actions pre {
+  clear: left;
+  color: black;
+  margin-left: 6em;
+}
+
+.test-describe {
+  padding-bottom: 0.5em;
+}
+
+.test-describe .test-describe {
+  margin: 5px 5px 10px 2em;
+}
+
+.test-actions .status-pending .test-title:before {
+  content: '\00bb\00A0';
+}
+
+.scrollpane {
+   max-height: 20em;
+   overflow: auto;
+}
+
+/** Colors */
+
+#header {
+  background-color: #F2C200;
+}
+
+#specs h2 {
+  border-top: 2px solid #BABAD1;
+}
+
+#specs h2,
+#application h2 {
+  background-color: #efefef;
+}
+
+#application {
+  border: 1px solid #BABAD1;
+}
+
+.test-describe .test-describe {
+  border-left: 1px solid #BABAD1;
+  border-right: 1px solid #BABAD1;
+  border-bottom: 1px solid #BABAD1;
+}
+
+.status-display {
+  border: 1px solid #777;
+}
+
+.status-display .status-pending,
+.status-pending .test-info {
+  background-color: #F9EEBC;
+}
+
+.status-display .status-success,
+.status-success .test-info {
+  background-color: #B1D7A1;
+}
+
+.status-display .status-failure,
+.status-failure .test-info {
+  background-color: #FF8286;
+}
+
+.status-display .status-error,
+.status-error .test-info {
+  background-color: black;
+  color: white;
+}
+
+.test-actions .status-success .test-title {
+  color: #30B30A;
+}
+
+.test-actions .status-failure .test-title {
+  color: #DF0000;
+}
+
+.test-actions .status-error .test-title {
+  color: black;
+}
+
+.test-actions .timer-result {
+  color: #888;
+}
+</style><style type="text/css">@charset "UTF-8";
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak],
+.ng-cloak, .x-ng-cloak,
+.ng-hide:not(.ng-hide-animate) {
+  display: none !important;
+}
+
+ng\:form {
+  display: block;
+}
+
+.ng-animate-shim {
+  visibility:hidden;
+}
+
+.ng-anchor {
+  position:absolute;
+}
+</style><style type="text/css">@charset "UTF-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}</style>
+    <meta charset="utf-8" />
+    <title>In-house</title>
+    <meta http-equiv="Content-Type" content="text/html" charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="In-house Quotation System" />
+    <meta name="keywords" content="insurance,quote,policy" />
+    <meta name="author" content="Allegro Team" />
+    <meta name="version" content="1.0.3" />
+    <base href="/" />
+    <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+    <link href="//fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,700,300,600,400" rel="stylesheet" type="text/css" />
+
+    <link rel="stylesheet" href="css/vendor-899ff0a52c.css" />
+
+    <link rel="stylesheet" href="css/app-d7f92644fc.css" />
+  </head>
+  <body ng-controller="bodyCtrl" ng-class="bodyClass()" class="ng-scope main policies list">
+
+    <!-- uiView:  --><div ui-view="" class="ng-scope"><div id="wrapper" class="ng-scope">
+  <!-- uiView: header --><div ui-view="header" class="ng-scope"><nav class="navbar navbar-default navbar-fixed-top ng-scope ng-isolate-scope headroom headroom--top" headroom="">
+  <div class="container-fluid">
+
+    <!-- brand and toggle -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#main-navbar-collapse" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" ui-sref="main.dashboard" href="/">Logo</a>
+    </div>
+    <!-- /.brand and toggle -->
+
+    <div class="collapse navbar-collapse" id="main-navbar-collapse">
+
+      <!-- nav links -->
+      <ul class="nav navbar-nav navbar-left">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Policies <span class="caret"></span></a>
+          <ul class="dropdown-menu standard-menu">
+            <li><a ui-sref="main.policies.startQuote" href="/policies/start-quote">New Quote</a></li>
+            <li><a ui-sref="main.policies.list" href="/policies">Existing Policies/Quotes</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Claims <span class="caret"></span></a>
+          <ul class="dropdown-menu standard-menu">
+            <li><a href="#">New Claim</a></li>
+            <li><a href="#">Maintenance</a></li>
+          </ul>
+        </li>
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Brokers <span class="caret"></span></a>
+          <ul class="dropdown-menu standard-menu">
+            <li><a ui-sref="wizard.agents.new" href="/agents/new">New Agent</a></li>
+            <li><a ui-sref="main.agents.list" href="/agents">Maintenance</a></li>
+          </ul>
+        </li>
+        <li><a ui-sref="main.reports.list" href="/reports">Reports</a></li>
+      </ul>
+      <!-- /.nav links -->
+
+      <!-- right side -->
+      <ul class="nav navbar-nav navbar-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+            Hi, <strong class="ng-binding">Rocky Chen</strong> <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu standard-menu">
+            <li><a href="#">Account Settings</a></li>
+            <li role="separator" class="divider"></li>
+            <li><a href="" ng-click="logout()">Logout</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!-- /.right side -->
+
+    </div>
+  </div>
+</nav>
+</div>
+
+  <div class="page-body">
+    <section id="main">
+      <div class="main-content">
+        <!-- ngRepeat: alert in alerts -->
+
+        <!-- uiView:  --><div ui-view="" class="container-fluid p-t-20 p-b-20 ng-scope"><!-- uiView: undefined --><ui-view class="ng-scope"><div class="panel ng-scope">
+  <div class="panel-body">
+    <h2 class="primary-title size-h1">Retrieve Policies</h2>
+
+    <div class="well p-t-25 p-b-25">
+      <form class="form-inline form-inline-with-abs-message ng-valid-pattern ng-valid ng-valid-required ng-dirty ng-valid-parse ng-submitted" name="form" ng-submit="submitForm(form)" novalidate="" style="">
+        <div class="form-group">
+          <input class="form-control input-lg max-width-110 ng-pristine ng-untouched ng-valid ng-empty" ng-model="search.prn" placeholder="Policy Ref. No" type="text" />
+        </div>
+        <div class="form-group" ng-class="{ 'has-error': hasError(form, 'rp') }">
+          <input class="form-control input-lg max-width-110 ng-pristine ng-untouched ng-empty ng-valid-pattern ng-valid ng-valid-required" name="rp" ng-model="search.rp" postcode-format="" ng-pattern="/^((gir\s0aa)|((([a-pr-uwyz][a-hk-y]?[0-9][0-9]?)|(([a-pr-uwyz][0-9][a-hjkstuw])|([a-pr-uwyz][a-hk-y][0-9][abehmnprv-y])))\s[0-9][abd-hjlnp-uw-z]{2}))$/i" placeholder="Risk Postcode" type="text" ng-required="false" />
+          <span class="help-block ng-hide" ng-show="hasError(form, 'rp', 'pattern')">Invalid postcode</span>
+        </div>
+        <div class="form-group">
+          <input class="form-control input-lg min-width-185 ng-pristine ng-untouched ng-valid ng-empty" name="hn" ng-model="search.hn" placeholder="Insured/ Company Name" type="text" />
+        </div>
+        <div class="form-group">
+          <input class="form-control input-lg max-width-110 ng-pristine ng-untouched ng-valid ng-empty" name="an" ng-model="search.an" placeholder="Agent Number" type="text" />
+        </div>
+        <div class="form-group">
+          <select class="form-control input-lg ng-pristine ng-untouched ng-valid ng-empty" name="pt" ng-model="search.pt">
+              <option value="">Policy Type</option>
+              <!-- ngRepeat: option in policyTypesOptions --><!-- ngIf: option.isAvailable --><option ng-repeat="option in policyTypesOptions" value="LANDLORD_HOUSEHOLD" ng-if="option.isAvailable" class="ng-binding ng-scope">Landlord Household Insurance</option><!-- end ngIf: option.isAvailable --><!-- end ngRepeat: option in policyTypesOptions --><!-- ngIf: option.isAvailable --><option ng-repeat="option in policyTypesOptions" value="OWNER_OCCUPIER" ng-if="option.isAvailable" class="ng-binding ng-scope">Home Insurance</option><!-- end ngIf: option.isAvailable --><!-- end ngRepeat: option in policyTypesOptions --><!-- ngIf: option.isAvailable --><!-- end ngRepeat: option in policyTypesOptions --><!-- ngIf: option.isAvailable --><!-- end ngRepeat: option in policyTypesOptions --><!-- ngIf: option.isAvailable --><!-- end ngRepeat: option in policyTypesOptions --><!-- ngIf: option.isAvailable --><!-- end ngRepeat: option in policyTypesOptions -->
+            </select>
+        </div>
+        <div class="form-group">
+          <select class="form-control input-lg ng-valid ng-not-empty ng-dirty ng-valid-parse ng-touched" name="ps" ng-model="search.ps" style="">
+            <option value="">Status</option>
+            <!-- ngRepeat: option in policyStatusesOptions --><option ng-repeat="option in policyStatusesOptions" value="QUOTE" class="ng-binding ng-scope">Quote</option><!-- end ngRepeat: option in policyStatusesOptions --><option ng-repeat="option in policyStatusesOptions" value="CERTIFIED" class="ng-binding ng-scope">Certified</option><!-- end ngRepeat: option in policyStatusesOptions --><option ng-repeat="option in policyStatusesOptions" value="EXPIRED" class="ng-binding ng-scope">Expired</option><!-- end ngRepeat: option in policyStatusesOptions --><option ng-repeat="option in policyStatusesOptions" value="REFER" class="ng-binding ng-scope">Refer</option><!-- end ngRepeat: option in policyStatusesOptions --><option ng-repeat="option in policyStatusesOptions" value="DECLINED" class="ng-binding ng-scope">Declined</option><!-- end ngRepeat: option in policyStatusesOptions --><option ng-repeat="option in policyStatusesOptions" value="CANCELLED" class="ng-binding ng-scope">Cancelled</option><!-- end ngRepeat: option in policyStatusesOptions --><option ng-repeat="option in policyStatusesOptions" value="NTU" class="ng-binding ng-scope">NTU</option><!-- end ngRepeat: option in policyStatusesOptions -->
+          </select>
+        </div>
+        <button class="btn btn-primary btn-hollow" type="submit"><span class="glyphicon glyphicon-search icon"></span></button>
+        <button class="btn btn-primary btn-hollow" type="reset" ng-click="clear(form)">Clear</button>
+      </form>
+    </div>
+
+    <!-- ngIf: listInfo.policies.length --><div class="floatThead-wrapper" style="position: relative; clear:both;"><div style="overflow: hidden; padding-left: 0px; padding-right: 0px; position: absolute; margin-top: 0px; top: 0px; z-index: 1001; left: 0px; width: 865px;" aria-hidden="true" class="floatThead-container"><table class="table table-middle table-hover table-responsive ng-pristine ng-untouched ng-valid ng-scope floatThead-table" style="border-collapse: collapse; border: 0px none rgb(128, 128, 128); display: table; margin: 0px; table-layout: auto; width: 865px;"><colgroup><col style="width: 49px;" /><col style="width: 63px;" /><col style="width: 96px;" /><col style="width: 117px;" /><col style="width: 80px;" /><col style="width: 52px;" /><col style="width: 79px;" /><col style="width: 62px;" /><col style="width: 87px;" /><col style="width: 82px;" /><col style="width: 98px;" /></colgroup></table></div><table class="table table-middle table-hover table-responsive ng-pristine ng-untouched ng-valid ng-scope ng-not-empty" float-thead="floatTheadOptions" ng-model="listInfo.policies" ng-if="listInfo.policies.length" style="table-layout: auto; min-width: 865px;"><thead>
+        <tr>
+          <th class="text-center width-45"> </th>
+          <th class="text-center">Policy Type</th>
+          <th class="text-center">Policy Ref. No.</th>
+          <th class="text-center">Insured Name/ Company</th>
+          <th class="text-center width-80">Status</th>
+          <th class="text-center width-50">Refer</th>
+          <th class="text-center">Risk Postcode</th>
+          <th class="text-center">Agent No.</th>
+          <th class="text-center">Inception Date</th>
+          <th class="text-center">Expiry Date</th>
+          <th class="text-center">Underwriter</th>
+        </tr>
+      </thead><colgroup><col style="width: 49px;" /><col style="width: 63px;" /><col style="width: 96px;" /><col style="width: 117px;" /><col style="width: 80px;" /><col style="width: 52px;" /><col style="width: 79px;" /><col style="width: 62px;" /><col style="width: 87px;" /><col style="width: 82px;" /><col style="width: 98px;" /></colgroup>
+      
+
+      <tbody>
+        <!-- ngRepeat: policy in listInfo.policies --><tr class="tr-ooi" ng-repeat="policy in listInfo.policies">
+          <td width="45">
+            <div class="btn-group open">
+              <button type="button" class="btn-sm btn-default dropdown-toggle btn-sm" data-toggle="dropdown" aria-expanded="true">
+                <span class="glyphicon glyphicon-list"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li ng-show="policyIsEditable(policy.status)" class="">
+                  <a ui-sref="wizard.policies.edit({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000012/edit">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>Edit Quote
+                  </a>
+                </li>
+                <li ng-show="policyIsCancelable(policy.status)" class="">
+                  <a ui-sref="wizard.policies.canx({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000012/canx">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>Cancellation
+                  </a>
+                </li>
+                <li ng-show="policyIsAdjustable(policy.status)" class="">
+                  <a ui-sref="wizard.policies.mta({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000012/mta">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>Mid-term Adjustment
+                  </a>
+                </li>
+                <li ng-show="policyhasDocuments(policy.status)" class="">
+                  <a ui-sref="main.policies.documents({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000012/documents">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>View / Documents
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </td>
+          <td class="text-center ng-binding">OOI</td>
+          <td class="text-center ng-binding">N1603000012</td>
+          <td class="text-center ng-binding">Mr Rocky Chen</td>
+          <td class="text-center width-80"><span class="label label-success">CERTIFIED</span></td>
+          <td class="text-center width-50"><i class="fa fa-circle refer-icon text-grey lighten-1" ng-class="{ 'text-refer': policy.isReferred }"></i></td>
+          <td class="text-center ng-binding">TW8 9BW</td>
+          <td class="text-center ng-binding">999999</td>
+          <td class="text-center ng-binding">31/03/2016</td>
+          <td class="text-center ng-binding">30/03/2017</td>
+          <td class="text-center ng-binding">CTI</td>
+        </tr><!-- end ngRepeat: policy in listInfo.policies --><tr class="tr-ooi" ng-repeat="policy in listInfo.policies">
+          <td width="45">
+            <div class="btn-group">
+              <button type="button" class="btn-sm btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-list"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li ng-show="policyIsEditable(policy.status)" class="">
+                  <a ui-sref="wizard.policies.edit({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000011/edit">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>Edit Quote
+                  </a>
+                </li>
+                <li ng-show="policyIsCancelable(policy.status)" class="">
+                  <a ui-sref="wizard.policies.canx({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000011/canx">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>Cancellation
+                  </a>
+                </li>
+                <li ng-show="policyIsAdjustable(policy.status)" class="">
+                  <a ui-sref="wizard.policies.mta({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000011/mta">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>Mid-term Adjustment
+                  </a>
+                </li>
+                <li ng-show="policyhasDocuments(policy.status)" class="">
+                  <a ui-sref="main.policies.documents({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000011/documents">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>View / Documents
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </td>
+          <td class="text-center ng-binding">OOI</td>
+          <td class="text-center ng-binding">N1603000011</td>
+          <td class="text-center ng-binding">Mr Rocky Chen</td>
+          <td class="text-center width-80"><span class="label label-success">CERTIFIED</span></td>
+          <td class="text-center width-50"><i class="fa fa-circle refer-icon text-grey lighten-1" ng-class="{ 'text-refer': policy.isReferred }"></i></td>
+          <td class="text-center ng-binding">TW8 9BW</td>
+          <td class="text-center ng-binding">999999</td>
+          <td class="text-center ng-binding">31/03/2016</td>
+          <td class="text-center ng-binding">30/03/2017</td>
+          <td class="text-center ng-binding">CTI</td>
+        </tr><!-- end ngRepeat: policy in listInfo.policies --><tr class="tr-ooi" ng-repeat="policy in listInfo.policies">
+          <td width="45">
+            <div class="btn-group">
+              <button type="button" class="btn-sm btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-list"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li ng-show="policyIsEditable(policy.status)" class="">
+                  <a ui-sref="wizard.policies.edit({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000004/edit">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>Edit Quote
+                  </a>
+                </li>
+                <li ng-show="policyIsCancelable(policy.status)" class="">
+                  <a ui-sref="wizard.policies.canx({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000004/canx">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>Cancellation
+                  </a>
+                </li>
+                <li ng-show="policyIsAdjustable(policy.status)" class="">
+                  <a ui-sref="wizard.policies.mta({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000004/mta">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>Mid-term Adjustment
+                  </a>
+                </li>
+                <li ng-show="policyhasDocuments(policy.status)" class="">
+                  <a ui-sref="main.policies.documents({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000004/documents">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>View / Documents
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </td>
+          <td class="text-center ng-binding">OOI</td>
+          <td class="text-center ng-binding">N1603000004</td>
+          <td class="text-center ng-binding">Mr Hello World</td>
+          <td class="text-center width-80"><span class="label label-success">CERTIFIED</span></td>
+          <td class="text-center width-50"><i class="fa fa-circle refer-icon text-grey lighten-1" ng-class="{ 'text-refer': policy.isReferred }"></i></td>
+          <td class="text-center ng-binding">TW8 9BW</td>
+          <td class="text-center ng-binding">999999</td>
+          <td class="text-center ng-binding">31/03/2016</td>
+          <td class="text-center ng-binding">30/03/2017</td>
+          <td class="text-center ng-binding">CTI</td>
+        </tr><!-- end ngRepeat: policy in listInfo.policies --><tr class="tr-ooi" ng-repeat="policy in listInfo.policies">
+          <td width="45">
+            <div class="btn-group">
+              <button type="button" class="btn-sm btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-list"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li ng-show="policyIsEditable(policy.status)" class="">
+                  <a ui-sref="wizard.policies.edit({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000002/edit">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>Edit Quote
+                  </a>
+                </li>
+                <li ng-show="policyIsCancelable(policy.status)" class="">
+                  <a ui-sref="wizard.policies.canx({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000002/canx">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>Cancellation
+                  </a>
+                </li>
+                <li ng-show="policyIsAdjustable(policy.status)" class="">
+                  <a ui-sref="wizard.policies.mta({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000002/mta">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>Mid-term Adjustment
+                  </a>
+                </li>
+                <li ng-show="policyhasDocuments(policy.status)" class="">
+                  <a ui-sref="main.policies.documents({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000002/documents">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>View / Documents
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </td>
+          <td class="text-center ng-binding">OOI</td>
+          <td class="text-center ng-binding">N1603000002</td>
+          <td class="text-center ng-binding">Mr Hello World</td>
+          <td class="text-center width-80"><span class="label label-success">CERTIFIED</span></td>
+          <td class="text-center width-50"><i class="fa fa-circle refer-icon text-grey lighten-1" ng-class="{ 'text-refer': policy.isReferred }"></i></td>
+          <td class="text-center ng-binding">TW7 4DS</td>
+          <td class="text-center ng-binding">999999</td>
+          <td class="text-center ng-binding">31/03/2016</td>
+          <td class="text-center ng-binding">30/03/2017</td>
+          <td class="text-center ng-binding">CTI</td>
+        </tr><!-- end ngRepeat: policy in listInfo.policies --><tr class="tr-ooi" ng-repeat="policy in listInfo.policies">
+          <td width="45">
+            <div class="btn-group">
+              <button type="button" class="btn-sm btn-default dropdown-toggle btn-sm" data-toggle="dropdown">
+                <span class="glyphicon glyphicon-list"></span>
+              </button>
+              <ul class="dropdown-menu" role="menu">
+                <li ng-show="policyIsEditable(policy.status)" class="">
+                  <a ui-sref="wizard.policies.edit({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000001/edit">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>Edit Quote
+                  </a>
+                </li>
+                <li ng-show="policyIsCancelable(policy.status)" class="">
+                  <a ui-sref="wizard.policies.canx({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000001/canx">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>Cancellation
+                  </a>
+                </li>
+                <li ng-show="policyIsAdjustable(policy.status)" class="">
+                  <a ui-sref="wizard.policies.mta({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000001/mta">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>Mid-term Adjustment
+                  </a>
+                </li>
+                <li ng-show="policyhasDocuments(policy.status)" class="">
+                  <a ui-sref="main.policies.documents({type: policyTypeUri(policy.type), policyReferenceNumber: policy.policyReferenceNumber})" href="/policies/ooi/N1603000001/documents">
+                    <span class="glyphicon glyphicon-chevron-right icon m-r-5"></span>View / Documents
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </td>
+          <td class="text-center ng-binding">OOI</td>
+          <td class="text-center ng-binding">N1603000001</td>
+          <td class="text-center ng-binding">Mr Rocky Chen</td>
+          <td class="text-center width-80"><span class="label label-success">CERTIFIED</span></td>
+          <td class="text-center width-50"><i class="fa fa-circle refer-icon text-grey lighten-1" ng-class="{ 'text-refer': policy.isReferred }"></i></td>
+          <td class="text-center ng-binding">TW8 9BW</td>
+          <td class="text-center ng-binding">999999</td>
+          <td class="text-center ng-binding">31/03/2016</td>
+          <td class="text-center ng-binding">30/03/2017</td>
+          <td class="text-center ng-binding">CTI</td>
+        </tr><!-- end ngRepeat: policy in listInfo.policies -->
+      </tbody>
+    <fthfoot style="display:table-footer-group;border-spacing:0;height:0;border-collapse:collapse;visibility:hidden"><fthtr style="display:table-row;border-spacing:0;height:0;border-collapse:collapse"><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd><fthtd style="display:table-cell;height:0;width:auto;"></fthtd></fthtr></fthfoot></table></div><!-- end ngIf: listInfo.policies.length -->
+
+    <!-- ngIf: !listInfo.policies.length -->
+
+    <!-- ngIf: listInfo.hasMorePage -->
+  </div>
+</div>
+</ui-view></div>
+      </div>
+    </section>
+  </div>
+</div>
+</div>
+
+    <script src="js/vendor-a0136ec1d1.js"></script>
+
+    <script src="js/app-0cf446b8be.js"></script>
+
+  
+
+</body></html>
